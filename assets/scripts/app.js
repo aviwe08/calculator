@@ -16,6 +16,7 @@ function createUserOutput(operator, initialResult, enteredNumber) {
   };
   logEntries.push(logEntry);
   console.log(logEntries);
+  console.log(logEntry.nextResult);
 }
 
 function add() {
