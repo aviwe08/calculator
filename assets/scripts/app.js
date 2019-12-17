@@ -19,37 +19,55 @@ function createUserOutput(operator, initialResult, enteredNumber) {
   console.log(logEntry.nextResult);
 }
 
-function add() {
+function calculateResult(operator) {
   const userEntry = getUserInput();
   const initialResult = currentResult;
-  currentResult += userEntry;
-  createUserOutput("+", initialResult, userEntry);
+  if (
+    operator !== "ADD" &&
+    operator !== "SUBTRACT" &&
+    operator !== "DIVIDE" &&
+    operator !== "MULTIPLY"
+  ) {
+    alert("Incorrect Operator");
+    return;
+  }
+  if (operator === "DIVIDE" &&
+      userEntry === 0) {
+    alert("Can not divide by 0");
+    return;
+  }
+  if (operator === "ADD") {
+    currentResult += userEntry;
+    createUserOutput("+", initialResult, userEntry);
+  } else if (operator === "SUBTRACT") {
+    currentResult -= userEntry;
+    createUserOutput("-", initialResult, userEntry);
+  } else if (operator === "DIVIDE") {
+    currentResult /= userEntry;
+    createUserOutput("/", initialResult, userEntry);
+  } else {
+    currentResult *= userEntry;
+    createUserOutput("*", initialResult, userEntry);
+  }
+}
+
+function add() {
+  calculateResult("ADD");
 }
 
 function subtract() {
-  const userEntry = getUserInput();
-  const initialResult = currentResult;
-  currentResult -= userEntry;
-  createUserOutput("-", initialResult, userEntry);
+  calculateResult("SUBTRACT");
 }
 
 function divide() {
-  const userEntry = getUserInput();
-  const initialResult = currentResult;
-  currentResult /= userEntry;
-  createUserOutput("/", initialResult, userEntry);
+  calculateResult("DIVIDE");
 }
 
 function multiply() {
-  const userEntry = getUserInput();
-  const initialResult = currentResult;
-  currentResult *= userEntry;
-  createUserOutput("*", initialResult, userEntry);
+  calculateResult("MULTIPLY");
 }
 
 addBtn.addEventListener("click", add);
 subtractBtn.addEventListener("click", subtract);
 multiplyBtn.addEventListener("click", multiply);
 divideBtn.addEventListener("click", divide);
-
-
